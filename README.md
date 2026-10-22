@@ -57,12 +57,12 @@ Prompt
 - math_helper(operation)
 
 
- Weather Checker MCP Server
+Weather Checker MCP Server
 
- Project Overview
-This project is a Model Context Protocol (MCP) server that provides current weather information for cities worldwide.
+Project Overview
+This project is a Model Context Protocol (MCP) server that provides current weather information for cities worldwide. It connects to Ollama using the Qwen3 4B model, allowing users to ask weather questions in natural language.
 
-Features
+ Features
 - Search for cities worldwide.
 - Get current temperature in Celsius.
 - Get feels-like temperature.
@@ -70,41 +70,86 @@ Features
 - Get weather conditions.
 - Get wind speed.
 - Display local update time and timezone.
-- Handle unknown city names with an error message.
+- Handle empty and unknown city names.
+- Use Ollama to ask weather questions in natural language.
 
-Technologies Used
+ Technologies Used
 - Python
 - MCP SDK 2.x
 - HTTPX
+- Ollama
+- Qwen3 4B
 - Open-Meteo Geocoding API
 - Open-Meteo Weather API
+- Python unittest
 
-Requirements
+ Project Files
+- `server.py` — MCP server and weather tool.
+- `weather_client.py` — Connects Ollama to the MCP server.
+- `test_weather.py` — Automated tests for weather functionality.
+- `README.md` — Project documentation.
+
+ Requirements
 - Python 3.13
+- Ollama
+- Qwen3 4B model
 - Internet connection
 
- Setup
+Setup
 
-1. Clone or download this repository.
-2. Create and activate a Python virtual environment.
-3. Install dependencies:
+1. Install dependencies
+
+```bash
+python -m pip install "mcp[cli]" httpx ollama
+```
+
+2. Download the Ollama model
+
+```bash
+ollama pull qwen3:4b
+```
+
+3. Run the Weather MCP client
+
+Make sure Ollama is running, then execute:
+
+```bash
+python weather_client.py
+```
+
+Enter a question, for example:
+
+`What is the current weather in Hyderabad?`
+
+The client connects to the MCP server, calls the weather tool, and displays the result with Ollama's response.
+
+Available MCP Tool
+
+`check_weather(city)`
+
+Accepts a city name and returns its current weather information, including temperature, feels-like temperature, humidity, conditions, wind speed, update time, and timezone.
+
+Automated Testing
+
+Run the tests using:
+
+bash
+python -m unittest test_weather -v
 
 
-python -m pip install "mcp[cli]" httpx
+Three automated tests are included:
 
+1. `test_valid_city` — checks a valid city response.
+2. `test_empty_city` — checks empty input handling.
+3. `test_unknown_city` — checks handling of an unknown city.
 
-4. Run the MCP server using your configured MCP client.
-
- Available Tool
-
-check_weather(city)
-
-Enter a city name to retrieve its current weather information.
-
-Example cities: Chennai, Mumbai, Hyderabad, London, Tokyo.
+All three tests passed during project testing. The tests use simulated API responses and do not replace live API testing.
 
 APIs Used
-- Geocoding: https://geocoding-api.open-meteo.com/
-- Weather: https://open-meteo.com/
+- Geocoding API: https://geocoding-api.open-meteo.com/
+- Weather API: https://open-meteo.com/
+
+Author
+Priya R C
 
 
