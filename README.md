@@ -55,3 +55,56 @@ Resource
 
 Prompt
 - math_helper(operation)
+
+
+ Weather Checker MCP Server
+
+ Project Overview
+This project is a Model Context Protocol (MCP) server that provides current weather information for cities worldwide.
+
+Features
+- Search for cities worldwide.
+- Get current temperature in Celsius.
+- Get feels-like temperature.
+- Get humidity percentage.
+- Get weather conditions.
+- Get wind speed.
+- Display local update time and timezone.
+- Handle unknown city names with an error message.
+
+Technologies Used
+- Python
+- MCP SDK 2.x
+- HTTPX
+- Open-Meteo Geocoding API
+- Open-Meteo Weather API
+
+Requirements
+- Python 3.13
+- Internet connection
+
+ Setup
+
+1. Clone or download this repository.
+2. Create and activate a Python virtual environment.
+3. Install dependencies:
+
+
+python -m pip install "mcp[cli]" httpx
+
+
+4. Run the MCP server using your configured MCP client.
+
+ Available Tool
+
+check_weather(city)
+
+Enter a city name to retrieve its current weather information.
+
+Example cities: Chennai, Mumbai, Hyderabad, London, Tokyo.
+
+APIs Used
+- Geocoding: https://geocoding-api.open-meteo.com/
+- Weather: https://open-meteo.com/
+
+
